@@ -3,7 +3,7 @@
 body {
     font-family: 'Montserrat', sans-serif;
     text-align: center;
-    background: #f4f4f4;
+    background: #f0efeb;
 }
 .card {
     margin: 50px auto;
@@ -22,4 +22,19 @@ body {
     color: green;
     font-weight: bold;
     font-size: 20px;
+}
+
+/* Top header with centered logo */
+.site-header {
+    background: #f0efeb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 0;
+}
+.site-header img {
+    max-height: 90px;
+    width: auto;
+    display: block;
+    object-fit: contain;
 }
