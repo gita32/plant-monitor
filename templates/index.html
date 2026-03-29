@@ -2,31 +2,7 @@
 <html>
 <head>
     <title>Plant Monitor</title>
-    <style>
-        body {
-            font-family: Arial;
-            text-align: center;
-            background: #f4f4f4;
-        }
-        .card {
-            margin: 50px auto;
-            padding: 30px;
-            width: 300px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-        .alert {
-            color: red;
-            font-weight: bold;
-            font-size: 20px;
-        }
-        .good {
-            color: green;
-            font-weight: bold;
-            font-size: 20px;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
 
@@ -35,40 +11,10 @@
     <p>Temperature: <span id="temp">--</span> °F</p>
     <p>Moisture: <span id="moist">--</span></p>
     <p id="status"></p>
+    <p id="last_watered"></p>
 </div>
 
-<script>
-const THRESHOLD = 300;
-
-function fetchData() {
-    fetch('/data')
-        .then(res => res.json())
-        .then(data => {
-            document.getElementById('temp').innerText = data.temp;
-            document.getElementById('moist').innerText = data.moist;
-
-            const status = document.getElementById('status');
-
-            if (data.moist < THRESHOLD) {
-                status.innerText = "🚨 Water your plant!";
-                status.className = "alert";
-
-                // 🔔 browser alert (only once per refresh)
-                if (!window.alertShown) {
-                    alert("Your plant needs water!");
-                    window.alertShown = true;
-                }
-
-            } else {
-                status.innerText = "✅ Plant is healthy";
-                status.className = "good";
-                window.alertShown = false;
-            }
-        });
-}
-
-setInterval(fetchData, 1000);
-</script>
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
 
 </body>
 </html>
